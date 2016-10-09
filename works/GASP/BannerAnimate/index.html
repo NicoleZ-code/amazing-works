@@ -36,8 +36,8 @@
 		</div>
 
 	</div>
-	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src='js/TweenMax.min.js'></script>
+	<script type="text/javascript" src="../lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src='../lib/TweenMax.min.js'></script>
 	<script type="text/javascript">
 	$(function(){
 		var tagline = $("#tagline "),
@@ -56,10 +56,6 @@
 			tl.staggerTo(tagline, 0.01,{scale:0,alpha:0},0.001);
 			tl.staggerTo(txt,0.01,{alpha:1},0.001);
 			tl.staggerTo(tagline,0.8,{alpha:1,scale:1,ease:Back.easeOut},1);
-			// TweenMax.to(tagline,1,{repeat:-1,delay:10},
-			// 	onComplete:function(){
-			// 		tl.restart();
-			// 	});
 	});
 
 	</script>
