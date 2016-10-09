@@ -42,7 +42,10 @@
 	$(function(){
 		var tagline = $("#tagline "),
 			txt = $("#tagline span"),
-		    tl = new TimelineMax();
+		    tl = new TimelineMax({
+		    	repeat: -1,
+  				repeatDelay: 2
+		    });
 	
 			TweenLite.set($("#tagline"), {visibility:"visible"});
 
@@ -53,7 +56,6 @@
 			tl.staggerTo(tagline, 0.01,{scale:0,alpha:0},0.001);
 			tl.staggerTo(txt,0.01,{alpha:1},0.001);
 			tl.staggerTo(tagline,0.8,{alpha:1,scale:1,ease:Back.easeOut},1);
-			// tl.delay(2);
 			// TweenMax.to(tagline,1,{repeat:-1,delay:10},
 			// 	onComplete:function(){
 			// 		tl.restart();
