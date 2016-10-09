@@ -1,0 +1,28 @@
+.banner{
+	width: 1000px;
+	margin:30px auto;
+	position: relative;
+}
+.centerword{
+	width: 404px;
+	height: 112px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin-top: -56px;
+	margin-left: -202px;
+	color: #fff;
+	font-size: 40px;
+	word-spacing: 2px;
+	line-height: 56px;
+	visibility: hidden;
+}
+.centerword .text{
+	text-align: center;
+}
+.centerword .text span{
+	position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 56px;
+}
