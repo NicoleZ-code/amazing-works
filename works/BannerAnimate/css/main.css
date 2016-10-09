@@ -4,18 +4,19 @@
 	position: relative;
 }
 .centerword{
-	width: 404px;
+	width: 424px;
 	height: 112px;
 	position: absolute;
 	left: 50%;
 	top:50%;
 	margin-top: -56px;
-	margin-left: -202px;
+	margin-left: -212px;
 	color: #fff;
 	font-size: 40px;
-	word-spacing: 2px;
+	word-spacing: 0px;
 	line-height: 56px;
 	visibility: hidden;
+	font-family: "Microsoft Yahei";
 }
 .centerword .text{
 	text-align: center;
