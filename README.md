@@ -1,3 +1,3 @@
-# czyhwork.github.io
+# crystalzyh.github.io/amazing-works
 
-[My home page](https://czyhwork.github.io)
+[some amazing works](https://crystalzyh.github.io/amazing-works)
