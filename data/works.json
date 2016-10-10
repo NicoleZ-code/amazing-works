@@ -1,6 +1,6 @@
 var worksList = [
 	{ id:"01", name:"BannerAnimate", url:"works/GASP/BannerAnimate", type:['GASP'], imgUrl:"show/BannerAnimate.jpg" },
-	{ id:"02", name:"ng-BookStore", url:"works/ng-BookStore/src", type:['AngularJS'], imgUrl:"show/AngularJS-large.png" },
+	{ id:"02", name:"ng-BookStore", url:"works/ng-BookStore/src", type:['AngularJS'], imgUrl:"show/AngularJS-large.jpg" },
 	{ id:"03", name:"Hexagon六边形", url:"works/Hexagon", type:['GASP','SVG','Canvas','map-area'], imgUrl:"show/default.jpg" },
 	{ id:"04", name:"ionic联系人APP", url:"works/ionic-contacts", type:['ionic','NodeJS'], imgUrl:"show/default.jpg" },
 	{ id:"05", name:"单色麻将算法", url:"works/Mah-jong/single.html", type:['Maths'], imgUrl:"show/default.jpg" },

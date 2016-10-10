@@ -6,59 +6,68 @@
 	<link rel="stylesheet" type="text/css" href="css/demo.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
-<body>
+<body ng-app="works">
 	<div class="works-top">
 		<canvas>
-			
+			暗黑系点阵动画 jquery 插件背景动画
 		</canvas>
 	</div>
 	<!-- angular  -->
-	<ul class="works-list">
-		<li>
-			<a href="works/GASP/BannerAnimate">
+	<worksList></worksList>
+	<ul class="works-list" ng-controller="worksListCtrl">
+		<li ng-repeat='item in data'>
+			<a href="{{item.url}}">
 				<p>
-					<img src="show/BannerAnimate.jpg" alt="BannerAnimate.jpg">
+					<img src="{{item.imgUrl}}" alt="{{item.imgUrl}}">
 				</p>
-				<h3>BannerAnimate</h3>
-				<span>GASP</span>
+				<h3>{{item.name}}</h3>
+				<span>{{item.type}}</span>
 			</a>	
-		</li>
-		<li>
-			<a href="works/ng-BookStore/src">
-				<p>
-					<img src="show/AngularJS-large.png" alt="AngularJS-large.png">
-				</p>
-				<h3>ng-BookStore</h3>
-				<span>AngularJS</span>
-			</a>	
-		</li>
-		<li>
-			<a href="works/ng-Hexagon">
-				<p>
-					<img src="show/default.jpg" alt="default.jpg">
-				</p>
-				<h3>Hexagon六边形</h3>
-				<span>GASP,</span><span>SVG,</span><span>Canvas,</span><span>map-area</span>
-			</a>	
-		</li>
-		<li>
-			<a href="works/Mah-jong/single.html">
-				<p>
-					<img src="show/default.jpg" alt="default.jpg">
-				</p>
-				<h3>单色麻将算法</h3>
-				<span>Maths</span>
-			</a>	
-		</li>
-		<li>
-			<a href="works/ionic-contacts">
-				<p>
-					<img src="show/default.jpg" alt="default.jpg">
-				</p>
-				<h3>ionic联系人APP</h3>
-				<span>ionic,</span><span>NodeJS</span>
-			</a>
 		</li>
 	</ul>
+	<script type="text/javascript" src="lib/angular1.3.014.min.js"></script>
+	<script src="lib/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		var worksModule=angular.module('works',[]);
+		worksModule.directive('worksList', function(){
+			// Runs during compile
+			return {
+				// name: '',
+				// priority: 1,
+				// terminal: true,
+				// scope: {}, // {} = isolate, true = child, false/undefined = no change
+				// controller: function($scope, $element, $attrs, $transclude) {},
+				// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+				restrict: 'EA', // E = Element, A = Attribute, C = Class, M = Comment
+				template: 'BannerAnimate',
+				// templateUrl: '',
+				replace: true,
+				// transclude: true,
+				// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+				link: function($scope, iElm, iAttrs, controller) {
+					
+				}
+			};
+		});
+
+		worksModule.controller('worksListCtrl', function($scope){
+			// $http.get('data/worksList.json')
+	  //               .success(function(list) {
+	  //                   $scope.data = list
+	  //               })
+	  //               .error(function(){
+	  //               	console.log("$http error")
+	  //               });
+			$scope.data = [
+				{ id:"01", name:"BannerAnimate", url:"works/GASP/BannerAnimate", type:['GASP'], imgUrl:"show/BannerAnimate.jpg" },
+				{ id:"02", name:"ng-BookStore", url:"works/ng-BookStore/src", type:['AngularJS'], imgUrl:"show/AngularJS-large.png" },
+				{ id:"03", name:"Hexagon六边形", url:"works/Hexagon", type:['GASP','SVG','Canvas','map-area'], imgUrl:"show/default.jpg" },
+				{ id:"04", name:"ionic联系人APP", url:"works/ionic-contacts", type:['ionic','NodeJS'], imgUrl:"show/default.jpg" },
+				{ id:"05", name:"单色麻将算法", url:"works/Mah-jong/single.html", type:['Maths'], imgUrl:"show/default.jpg" }
+			];
+
+		});
+
+	</script>
 </body>
 </html>
