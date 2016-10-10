@@ -27,10 +27,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/index',
             views: {
                 '': {
-                    templateUrl: 'tpls/home.html'
+                    templateUrl: 'templates/home.html'
                 },
                 'main@index': {
-                    templateUrl: 'tpls/loginForm.html'
+                    templateUrl: 'templates/loginForm.html'
                 }
             }
         })
@@ -38,22 +38,22 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/{bookType:[0-9]{1,4}}',
             views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
                 '': {
-                    templateUrl: 'tpls/bookList.html'
+                    templateUrl: 'templates/bookList.html'
                 },
                 'booktype@booklist': {
-                    templateUrl: 'tpls/bookType.html'
+                    templateUrl: 'templates/bookType.html'
                 },
                 'bookgrid@booklist': {
-                    templateUrl: 'tpls/bookGrid.html'
+                    templateUrl: 'templates/bookGrid.html'
                 }
             }
         })
         .state('addbook', {
             url: '/addbook',
-            templateUrl: 'tpls/addBookForm.html'
+            templateUrl: 'templates/addBookForm.html'
         })
         .state('bookdetail', {
             url: '/bookdetail/:bookId', //注意这里在路由中传参数的方式
-            templateUrl: 'tpls/bookDetail.html'
+            templateUrl: 'templates/bookDetail.html'
         })
 });

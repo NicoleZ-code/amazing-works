@@ -46,19 +46,28 @@ a:hover,a:active,a:visited{
   overflow:hidden;
 }
 .works-list li{
-  /* width:25%; */
+  width: 220px;
+  height: 150px;
   border:1px solid #ddd;
   display:block;
   float:left;
   padding:6px;
   background-color: #f9f8f8;
   overflow: hidden;
+  margin-right: 20px;
 }
 .works-list li a {
   display: block;
 }
+.works-list li img{
+  width:100%;
+}
+.works-list li p{
+  height: 100px;
+  overflow: hidden;
+}
 .works-list li h3{
-  text-transform:uppercase;
+  text-transform:capitalize;
   color: yellowgreen;
   line-height: 30px;
   margin-top: 5px;
