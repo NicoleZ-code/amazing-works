@@ -31,7 +31,10 @@
 	<script type="text/javascript" src="lib/angular1.3.014.js"></script>
 	<!-- <script src="lib/angular-ui-router.js"></script> -->
 	<script type="text/javascript">
+		"use strict";
+
 		var worksModule=angular.module('works',[]);
+
 		worksModule.directive('worksList', function(){
 			// Runs during compile
 			return {
@@ -57,20 +60,10 @@
 			$http.get('data/worksList.json')
 	                .success(function(response) {
 	                    $scope.data = response.list;
-	                     console.log(response.list)
 	                })
 	                .error(function(){
 	                	console.log("$http error")
-	                });
-	  //       $scope.data =[
-			// 	{ id:"01", name:"BannerAnimate", url:"works/GASP/BannerAnimate", type:['GASP'], imgUrl:"show/BannerAnimate.jpg" },
-			// 	{ id:"02", name:"ng-BookStore", url:"works/ng-BookStore/src", type:['AngularJS'], imgUrl:"show/AngularJS-large.png" },
-			// 	{ id:"03", name:"Hexagon六边形", url:"works/Hexagon", type:['GASP','SVG','Canvas','map-area'], imgUrl:"show/default.jpg" },
-			// 	{ id:"04", name:"ionic联系人APP", url:"works/ionic-contacts", type:['ionic','NodeJS'], imgUrl:"show/default.jpg" },
-			// 	{ id:"05", name:"单色麻将算法", url:"works/Mah-jong/single.html", type:['Maths'], imgUrl:"show/default.jpg" },
-			// 	{ id:"06", name:"", url:"", type:[''], imgUrl:"" },
-			// 	{ id:"07", name:"", url:"", type:[''], imgUrl:"" }
-			// ];     
+	                });     
 			$rootScope.dataType = ['GASP','SVG','Canvas','map-area'];
 			// $rootScope.dataType = $scope.data.type;
 			//2层循环
