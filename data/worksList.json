@@ -34,20 +34,6 @@
 			"url":"works/Mah-jong/single.html", 
 			"type":["Maths"], 
 			"imgUrl":"show/default.jpg" 
-		},
-		{ 
-			"id":"06", 
-			"name":"", 
-			"url":"", 
-			"type":["a"], 
-			"imgUrl":"" 
-		},
-		{ 
-			"id":"07", 
-			"name":"", 
-			"url":"", 
-			"type":["a"], 
-			"imgUrl":"" 
 		}
 	]
 }

@@ -6,10 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="css/demo.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
-<body ng-app="works">
+<body ng-app="works" class="ngapp-bg">
 	<div class="works-top">
 		<canvas>
-			暗黑系点阵动画 jquery 插件背景动画
+			暗黑系点阵动画 jquery 插件背景动画 react
 		</canvas>
 	</div>
 	<!-- angular  -->
@@ -18,23 +18,30 @@
 		<li ng-repeat='item in data'>
 			<a href="{{item.url}}">
 				<p>
-					<img src="{{item.imgUrl}}" alt="{{item.imgUrl}}">
+					<img ng-src="{{item.imgUrl}}" alt="{{item.imgUrl}}">
 				</p>
 				<h3>{{item.name}}</h3>
-				<span ng-controller="typeCtrl">
+				<!-- <span ng-controller="typeCtrl">
 					<span ng-repeat="t_item in dataType">{{t_item}} </span>
-				</span>
-				
+					
+				</span> -->
+				<select ng-model="selectedName" ng-options="x for x in {{item.type}}">
+				</select>				
 			</a>	
 		</li>
 	</ul>
+<!-- 	<center style="width:400px;min-height:300px;margin:0 auto;border:2px solid orange;background: #fff; padding:20px 100px;">
+
+
+
+	</center> -->
 	<script type="text/javascript" src="lib/angular1.3.014.js"></script>
 	<!-- <script src="lib/angular-ui-router.js"></script> -->
 	<script type="text/javascript">
 		"use strict";
 
 		var worksModule=angular.module('works',[]);
-		
+
 		worksModule.directive('worksList', function(){
 			// Runs during compile
 			return {

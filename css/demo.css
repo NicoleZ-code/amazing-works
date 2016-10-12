@@ -40,6 +40,89 @@ a {
 a:hover,a:active,a:visited{
    text-decoration: none;
 }
+.bg{
+  background: url(body,div,ul,ol,li,h1,h2,h3,h4,h5,h6,p,iframe,input {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+ font-family: "Microsoft YaHei";
+  user-selet:none;
+  -moz-user-selet:none;
+  -webkituser-selet:none;
+  -khtml-user-selet:none;
+ -ms-user-selet:none;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+img,
+canvas {
+  height: auto;
+  display: block;
+  border: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+  font-family: "Microsoft YaHei";
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+  display: block;
+}
+ul,ol,li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  white-space: normal;
+  word-break: break-all;
+  cursor: pointer;
+}
+a:hover,a:active,a:visited{
+   text-decoration: none;
+}
+.ngapp-bg{
+  background: url(../show/banner-react.jpg) no-repeat center;
+}
+.works-list{
+  width: 1200px;
+  margin:30px auto;
+  overflow:hidden;
+}
+.works-list li{
+  width: 220px;
+  border:1px solid #ddd;
+  display:block;
+  float:left;
+  padding:6px;
+  background-color: #f9f8f8;
+  overflow: hidden;
+  margin-right: 6px;
+  margin-bottom: 20px;
+}
+.works-list li a {
+  display: block;
+}
+.works-list li img{
+  width:100%;
+}
+.works-list li p{
+  height: 100px;
+  overflow: hidden;
+}
+.works-list li h3{
+  text-transform:capitalize;
+  color: yellowgreen;
+  line-height: 30px;
+  margin-top: 5px;
+  font-size: 100%;
+}
+.works-list li span{
+  color: cadetblue;
+  font-size:12px;
+}
 .works-list{
   width: 1200px;
   margin:30px auto;
@@ -72,8 +155,51 @@ a:hover,a:active,a:visited{
   color: yellowgreen;
   line-height: 30px;
   margin-top: 5px;
+  font-size: 100%;
 }
 .works-list li span{
   color: cadetblue;
   font-size:12px;
+}
+@media screen and (max-width: 1200px){ 
+ .works-list{
+  width: 100%;
+ }
+ .works-list li{
+   width: 18%;
+   padding: 0.5%;
+   margin: 0 0.5%;
+   border: none;
+ }
+ .works-list li h3{
+  /*line-height: 25px;*/
+   margin-top: 0;
+ }
+}
+
+@media screen and (max-width: 800px){
+  .works-list li{
+    height: 140px;
+  }
+  .works-list li p{
+    height: 90px;
+  }
+  .works-list li h3{
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+@media screen and (max-width: 600px){
+  .works-list{
+    width: 600px;
+  }
+  .works-list li{
+    height: auto;
+  }
+  .works-list li p{
+    height: 60px;
+  }
+  .works-list li h3{
+    font-size: 12px;
+  }
 }
