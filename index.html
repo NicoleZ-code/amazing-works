@@ -21,20 +21,11 @@
 					<img ng-src="{{item.imgUrl}}" alt="{{item.imgUrl}}">
 				</p>
 				<h3>{{item.name}}</h3>
-				<!-- <span ng-controller="typeCtrl">
-					<span ng-repeat="t_item in dataType">{{t_item}} </span>
-					
-				</span> -->
-				<select ng-model="selectedName" ng-options="x for x in {{item.type}}">
-				</select>				
+				<span ng-repeat="t_item in item.type">{{t_item}} <span ng-if="!$last">,</span> </span>
 			</a>	
 		</li>
 	</ul>
-<!-- 	<center style="width:400px;min-height:300px;margin:0 auto;border:2px solid orange;background: #fff; padding:20px 100px;">
 
-
-
-	</center> -->
 	<script type="text/javascript" src="lib/angular1.3.014.js"></script>
 	<!-- <script src="lib/angular-ui-router.js"></script> -->
 	<script type="text/javascript">
@@ -71,14 +62,10 @@
 	                .error(function(){
 	                	console.log("$http error")
 	                });     
-			$rootScope.dataType = ['GASP','SVG','Canvas','map-area'];
-			// $rootScope.dataType = $scope.data.type;
-			//2层循环
+
 		});
 
-		worksModule.controller('typeCtrl', function($scope,$rootScope){
-			// $scope.dataType = $rootScope.dataType;
-		});
+
 
 	</script>
 </body>

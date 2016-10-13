@@ -170,6 +170,7 @@ a:hover,a:active,a:visited{
    padding: 0.5%;
    margin: 0 0.5%;
    border: none;
+   height: auto;
  }
  .works-list li h3{
   /*line-height: 25px;*/
