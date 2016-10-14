@@ -122,45 +122,9 @@ a:hover,a:active,a:visited{
 .works-list li span{
   color: cadetblue;
   font-size:12px;
+  display: inline-block;
 }
-.works-list{
-  width: 1200px;
-  margin:30px auto;
-  overflow:hidden;
-}
-.works-list li{
-  width: 220px;
-  height: 150px;
-  border:1px solid #ddd;
-  display:block;
-  float:left;
-  padding:6px;
-  background-color: #f9f8f8;
-  overflow: hidden;
-  margin-right: 6px;
-  margin-bottom: 20px;
-}
-.works-list li a {
-  display: block;
-}
-.works-list li img{
-  width:100%;
-}
-.works-list li p{
-  height: 100px;
-  overflow: hidden;
-}
-.works-list li h3{
-  text-transform:capitalize;
-  color: yellowgreen;
-  line-height: 30px;
-  margin-top: 5px;
-  font-size: 100%;
-}
-.works-list li span{
-  color: cadetblue;
-  font-size:12px;
-}
+
 @media screen and (max-width: 1200px){ 
  .works-list{
   width: 100%;

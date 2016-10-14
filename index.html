@@ -13,7 +13,7 @@
 		</canvas>
 	</div>
 	<!-- angular  -->
-	<worksList></worksList>
+	<div works-list></div>
 	<ul class="works-list" ng-controller="worksListCtrl">
 		<li ng-repeat='item in data'>
 			<a href="{{item.url}}">
@@ -21,12 +21,12 @@
 					<img ng-src="{{item.imgUrl}}" alt="{{item.imgUrl}}">
 				</p>
 				<h3>{{item.name}}</h3>
-				<span ng-repeat="t_item in item.type">{{t_item}} <span ng-if="!$last">,</span> </span>
+				<span ng-repeat="t_item in item.type">{{t_item}}<span ng-if="!$last">,</span> </span>
 			</a>	
 		</li>
 	</ul>
 
-	<script type="text/javascript" src="lib/angular1.3.014.js"></script>
+	<script type="text/javascript" src="lib/angular1.3.014.min.js"></script>
 	<!-- <script src="lib/angular-ui-router.js"></script> -->
 	<script type="text/javascript">
 		"use strict";
@@ -42,10 +42,10 @@
 				// scope: {}, // {} = isolate, true = child, false/undefined = no change
 				// controller: function($scope, $element, $attrs, $transclude) {},
 				// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-				restrict: 'EA', // E = Element, A = Attribute, C = Class, M = Comment
+				//restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 				template: 'BannerAnimate',
 				// templateUrl: '',
-				replace: true,
+				// replace: true,
 				// transclude: true,
 				// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 				link: function($scope, iElm, iAttrs, controller) {

@@ -79,12 +79,13 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
         }, {
             field: 'name',
             displayName: '书名',
-            enableCellEdit: true
+            enableCellEdit: true,
+            width: 200
         }, {
             field: 'author',
             displayName: '作者',
             enableCellEdit: true,
-            width: 220
+            width: 100
         }, {
             field: 'pubTime',
             displayName: '出版日期',
@@ -121,5 +122,5 @@ var bookDetailModule = angular.module("BookDetailModule", []);
 bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $stateParams) {
     console.log($stateParams);
     //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
-    
+    //不能直接传递过去???
 });
