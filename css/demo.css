@@ -84,7 +84,7 @@ a:hover,a:active,a:visited{
    text-decoration: none;
 }
 .ngapp-bg{
-  background: url(../show/banner-react.jpg) no-repeat center;
+  background: url(../show/banner-react.jpg) no-repeat top center;
 }
 .works-list{
   width: 1200px;
