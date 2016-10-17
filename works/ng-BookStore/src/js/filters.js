@@ -7,9 +7,11 @@
 var loginModule = angular.module('LoginMoudle', []);
 	loginModule.controller('loginController', function($scope, $http){
 		$scope.userInfo = {
-			"email":"abc@163.com",
-			"password":"123456"
+			"email":"",
+			"password":""
 		}
+		//$http 异步验证用户名密码是否正确
+		
 	});
 
 
@@ -20,9 +22,10 @@ var loginModule = angular.module('LoginMoudle', []);
 */
 var registerModule = angular.module('RegisterMoudle', []);
 	registerModule.controller('registerController', function($scope, $http,$filter){
-		// $scope.userInfo = {
-		// 	"email":"",
-		// 	"password":"",
-		// 	"password2":""
-		// }
+		$scope.userInfo = {
+			"email":"",
+			"password":"",
+			"password2":""
+		}
+		//$http 异步验证用户名密码是否存在
 	});

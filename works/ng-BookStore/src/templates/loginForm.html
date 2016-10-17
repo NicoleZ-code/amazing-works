@@ -13,7 +13,7 @@
                             用户名：
                         </label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" placeholder="推荐使用126邮箱" ng-model="userInfo.email" ng-required ng-class="{'has-error':userInfo.email.$invalid && userInfo.email.$dirty}">
+                            <input type="email" class="form-control" placeholder="推荐使用126邮箱" ng-model="userInfo.email" ng-required ng-class="{'has-error':loginForm.email.$invalid && userInfo.email.$dirty}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-success btn-lg" ui-sref="booklist({bookType:0})"  ng-disabled="loginForm.invalid">
+                            <button class="btn btn-success btn-lg" ui-sref="booklist({bookType:0})"  ng-disabled="loginForm.email.$invalid||loginForm.password.$invalid">
                                 登录
                             </button>
                             <a ui-sref="register" class="btn btn-default btn-lg">注册</a>

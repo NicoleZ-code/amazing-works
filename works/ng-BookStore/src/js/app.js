@@ -70,3 +70,11 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/bookDetail.html'
         })
 });
+
+/** 
+ * 路由权限验证管理
+ * userInfo role
+ * admin 新增书籍  
+ * normal 只能查看
+ * but 出于安全问题前端不涉及角色控制
+ */

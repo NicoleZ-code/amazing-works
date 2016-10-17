@@ -124,3 +124,35 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
     //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
     //不能直接传递过去???
 });
+
+/**
+*  验证登录loginModule
+*
+* Description
+*/
+var loginModule = angular.module('LoginMoudle', []);
+loginModule.controller('loginController', function($scope, $http){
+    $scope.userInfo = {
+        "email":"",
+        "password":""
+    }
+    //$http 异步验证用户名密码是否正确
+    
+});
+
+
+/**
+*  验证注册registerModule
+*
+* Description
+*/
+var registerModule = angular.module('RegisterMoudle', []);
+registerModule.controller('registerController', function($scope, $http,$filter){
+    $scope.userInfo = {
+        "email":"",
+        "password":"",
+        "password2":""
+    }
+    //$http 异步验证用户名密码是否存在
+    //nodejs 是否能操作写入文件
+});
