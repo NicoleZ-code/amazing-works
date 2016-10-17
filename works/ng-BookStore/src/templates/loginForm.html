@@ -7,13 +7,19 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form name="loginForm" class="form-horizontal" role="form" novalidate>
-                    <div class="form-group">
+                <form name="loginForm" class="form-horizontal" role="form" ng-submit="submit(loginForm.$valid)" novalidate>
+                    <div class="form-group" >
                         <label class="col-md-2 control-label">
                             用户名：
                         </label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" placeholder="推荐使用126邮箱" ng-model="userInfo.email" ng-required ng-class="{'has-error':loginForm.email.$invalid && userInfo.email.$dirty}">
+                            <input type="email" 
+                                   name="email" 
+                                   class="form-control" 
+                                   placeholder="推荐使用126邮箱" 
+                                   ng-model="userInfo.email" 
+                                   ng-required 
+                                   ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$touched}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -21,12 +27,24 @@
                             密码：
                         </label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" placeholder="只能 是数字、字母、下划线" ng-model="userInfo.password" ng-Minlength='6' ng-Maxlength='16' ng-required>
+                            <input type="password" 
+                                   name="password" 
+                                   class="form-control" 
+                                   placeholder="只能 是数字、字母、下划线" 
+                                   ng-model="userInfo.password" 
+                                   ng-Minlength='6' 
+                                   ng-Maxlength='16' 
+                                   ng-required
+                                   ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty}"
+                                   ng-disabled="loginForm.email.$invalid">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-success btn-lg" ng-disabled="loginForm.email.$invalid||loginForm.password.$invalid">
+                            <button 
+                                type="submit" 
+                                class="btn btn-success btn-lg" 
+                                ng-disabled="loginForm.email.$invalid">
                                 登录
                             </button>
                             <a ui-sref="register" class="btn btn-default btn-lg">注册</a>

@@ -135,10 +135,16 @@ loginModule.controller('loginController', function($scope, $http,$location){
     $scope.userInfo = {
         "email":"",
         "password":""
+    };
+    $scope.submit = function(isValid){
+        if(isValid){
+            alert("$valid: "+isValid)
+            //$http 异步验证用户名密码是否正确
+            // 如何控制登录成功跳转 ui-sref="booklist({bookType:0})"
+            //$location.toLowerCase = booklist({bookType:0});
+        }
     }
-    //$http 异步验证用户名密码是否正确
-    // 如何控制登录成功跳转 ui-sref="booklist({bookType:0})"
-    //$location.toLowerCase = booklist({bookType:0});
+    
 });
 
 

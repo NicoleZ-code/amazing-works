@@ -11,3 +11,8 @@
 .btn.btn-primary{
 	margin-bottom: 5px;
 }
+.has-error{
+	border: 1px solid #b94a48;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #b94a48;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #b94a48;
+}
