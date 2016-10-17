@@ -131,13 +131,14 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
 * Description
 */
 var loginModule = angular.module('LoginMoudle', []);
-loginModule.controller('loginController', function($scope, $http){
+loginModule.controller('loginController', function($scope, $http,$location){
     $scope.userInfo = {
         "email":"",
         "password":""
     }
     //$http 异步验证用户名密码是否正确
-    
+    // 如何控制登录成功跳转 ui-sref="booklist({bookType:0})"
+    //$location.toLowerCase = booklist({bookType:0});
 });
 
 
