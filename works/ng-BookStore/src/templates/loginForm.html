@@ -21,6 +21,7 @@
                                    ng-required 
                                    ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$touched}">
                         </div>
+                        <span class="errortext" ng-if="loginForm.email.$error.required||loginForm.email.$invalid && loginForm.email.$touched">邮箱不能为空，必须符合邮箱格式</span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
@@ -33,20 +34,25 @@
                                    placeholder="只能 是数字、字母、下划线" 
                                    ng-model="userInfo.password" 
                                    ng-Minlength='6' 
-                                   ng-Maxlength='16' 
+                                   ng-Maxlength='64' 
                                    ng-required
                                    ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty}"
                                    ng-disabled="loginForm.email.$invalid">
                         </div>
+                        <span class="errortext" 
+                            ng-if="loginForm.password.$error.required||loginForm.password.$error.minlength||loginForm.password.$error.maxlength&& loginForm.password.$dirty">
+                            密码需要在6至16位
+                         </span>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <button 
                                 type="submit" 
                                 class="btn btn-success btn-lg" 
-                                ng-disabled="loginForm.email.$invalid">
+                                ng-disabled="loginForm.email.$invalid || loginForm.email.$pristine||loginForm.password.$invalid || loginForm.password.$pristine">
                                 登录
                             </button>
+                            <!--  如何综合验证N项 -->
                             <a ui-sref="register" class="btn btn-default btn-lg">注册</a>
                         </div>
                     </div>

@@ -7,35 +7,70 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form name="registerForm" class="form-horizontal" role="form" ng-submit="submit()">
+                <form name="registerForm" class="form-horizontal" role="form" ng-submit="submit(registerForm.$valid)" novalidate>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            用户名：
+                            <span class="text-danger">*</span>用户名：
                         </label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" placeholder="推荐使用126邮箱" ng-model="userInfo.email">
+                            <input type="email" 
+                                   name="email" 
+                                   class="form-control" 
+                                   placeholder="推荐使用126邮箱" 
+                                   ng-model="userInfo.email" 
+                                   ng-required 
+                                   ng-class="{'has-error':registerForm.email.$invalid && registerForm.email.$touched}">
                         </div>
+                        <span class="errortext" ng-if="registerForm.email.$error.required||registerForm.email.$invalid && registerForm.email.$touched">邮箱不能为空，必须符合邮箱格式</span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            密码：
+                            <span class="text-danger">*</span>密码：
                         </label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" placeholder="只能是数字、字母、下划线" ng-model="userInfo.password">
+                            <input type="password" 
+                                   name="password" 
+                                   class="form-control" 
+                                   placeholder="只能 是数字、字母、下划线" 
+                                   ng-model="userInfo.password" 
+                                   ng-Minlength='6' 
+                                   ng-Maxlength='64' 
+                                   ng-required
+                                   ng-class="{'has-error':registerForm.password.$invalid && registerForm.password.$dirty}">
                         </div>
+                        <span class="errortext" 
+                            ng-if="registerForm.password.$error.required||registerForm.password.$error.minlength||registerForm.password.$error.maxlength&& registerForm.password.$dirty">
+                            密码需要在6至16位
+                         </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            再次输入密码：
+                            <span class="text-danger">*</span>再次输入密码：
                         </label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" placeholder="只能是数字、字母、下划线" ng-model="userInfo.password2">
+                            <input type="password" 
+                                   name="password2" 
+                                   class="form-control" 
+                                   placeholder="只能 是数字、字母、下划线" 
+                                   ng-model="userInfo.password2" 
+                                   ng-Minlength='6' 
+                                   ng-Maxlength='64' 
+                                   ng-required
+                                   ng-class="{'has-error':registerForm.password2.$invalid && registerForm.password2.$dirty}">
                         </div>
+                        <span class="errortext" 
+                            ng-if="registerForm.password2.$error.required||registerForm.password2.$error.minlength||registerForm.password2.$error.maxlength&& registerForm.password2.$dirty">
+                            密码需要在6至16位
+                         </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p class="text-danger" ng-bind="{{info}}"></p>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <a ui-sref="index" class="btn btn-success btn-lg" ng-click="">注册</a>
+                            <a class="btn btn-success btn-lg" ng-click="register()">注册</a>
                         </div>
                     </div>
                 </form>

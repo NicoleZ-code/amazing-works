@@ -56,12 +56,12 @@
 
 		worksModule.controller('worksListCtrl', function($scope,$rootScope,$http){
 			$http.get('data/worksList.json')
-	                .success(function(response) {
-	                    $scope.data = response.list;
-	                })
-	                .error(function(){
-	                	console.log("$http error")
-	                });     
+	            .success(function(response) {
+                    $scope.data = response.list;
+                })
+                .error(function(){
+                	console.log("$http error")
+                });     
 
 		});
 

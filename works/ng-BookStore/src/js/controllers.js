@@ -138,10 +138,23 @@ loginModule.controller('loginController', function($scope, $http,$location){
     };
     $scope.submit = function(isValid){
         if(isValid){
-            alert("$valid: "+isValid)
             //$http 异步验证用户名密码是否正确
             // 如何控制登录成功跳转 ui-sref="booklist({bookType:0})"
-            //$location.toLowerCase = booklist({bookType:0});
+            //$location.toXXXX = booklist({bookType:0});
+            $http.get("data/userInfo.json")
+                .success(function(response){
+                    for (var i = 0; i < response.length; i++) {
+                        if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
+                            //booklist({bookType:0})
+                            return ;
+                        }
+                    }
+                    
+                })
+                .error(function(){
+                    console.log("$http error")
+                });
+            
         }
     }
     
@@ -159,7 +172,27 @@ registerModule.controller('registerController', function($scope, $http,$filter){
         "email":"",
         "password":"",
         "password2":""
+    };
+    $scope.register = function(isValid){
+        if(isValid){
+            //$http 异步验证用户名密码是否存在
+            //nodejs 是否能操作写入文件
+            $http.get("data/userInfo.json")
+                .success(function(response){
+                    for (var i = 0; i < response.length; i++) {
+                        if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
+                            $scope.info = "用户已存在";
+                        }else{
+                            console.log("注册成功！")
+                            //ui-sref="index"
+                        }
+                    }
+                    
+                })
+                .error(function(){
+                    console.log("$http error")
+                });
+        }
     }
-    //$http 异步验证用户名密码是否存在
-    //nodejs 是否能操作写入文件
+    
 });
