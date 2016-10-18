@@ -145,7 +145,8 @@ loginModule.controller('loginController', function($scope, $http,$location){
                 .success(function(response){
                     for (var i = 0; i < response.length; i++) {
                         if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
-                            //booklist({bookType:0})
+                            $location.path("/booklist");
+                            console.log($location)
                             return ;
                         }
                     }
@@ -184,7 +185,8 @@ registerModule.controller('registerController', function($scope, $http,$filter){
                             $scope.info = "用户已存在";
                         }else{
                             console.log("注册成功！")
-                            //ui-sref="index"
+                            $location.path("/register");
+                            console.log($location)
                         }
                     }
                     
