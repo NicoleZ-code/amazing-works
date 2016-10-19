@@ -176,12 +176,19 @@ loginModule.controller('loginController', function($scope, $http,$location,$stat
 * Description
 */
 var registerModule = angular.module('RegisterMoudle', []);
-registerModule.controller('registerController', function($scope, $http,$filter){
+registerModule.controller('registerController', function($scope, $http,$state){
     $scope.userInfo = {
         "email":"",
         "password":"",
         "password2":""
     };
+    $scope.$watch("userInfo.password2",function(){
+        //console.log($scope.userInfo["password"],$scope.userInfo["password2"])
+        //underfined underfined
+        if($scope.userInfo["password"]!=$scope.userInfo["password2"]){
+            $scope.info = "两次密码不一致";
+        }
+    });
     $scope.register = function(isValid){
         if(isValid){
             //$http 异步验证用户名密码是否存在
@@ -193,8 +200,7 @@ registerModule.controller('registerController', function($scope, $http,$filter){
                             $scope.info = "用户已存在";
                         }else{
                             console.log("注册成功！")
-                            $location.path("/register");
-                            console.log($location)
+                            //$state.go("index");
                         }
                     }
                     
