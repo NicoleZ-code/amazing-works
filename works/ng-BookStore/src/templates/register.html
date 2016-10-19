@@ -1,4 +1,4 @@
-<div class="panel panel-primary col-md-6 col-md-offset-3">
+<div class="panel panel-primary col-md-8 col-md-offset-2 container">
     <div class="panel-body" ng-controller="registerController">
         <div class="row">
             <div class="col-md-12">
@@ -9,10 +9,10 @@
             <div class="col-md-12">
                 <form name="registerForm" class="form-horizontal" role="form" ng-submit="submit(registerForm.$valid)" novalidate>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">
+                        <label class="col-md-3 control-label">
                             <span class="text-danger">*</span>用户名：
                         </label>
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <input type="email" 
                                    name="email" 
                                    class="form-control" 
@@ -24,10 +24,10 @@
                         <span class="errortext" ng-if="registerForm.email.$error.required||registerForm.email.$invalid && registerForm.email.$touched">邮箱不能为空，必须符合邮箱格式</span>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">
+                        <label class="col-md-3 control-label">
                             <span class="text-danger">*</span>密码：
                         </label>
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <input type="password" 
                                    name="password" 
                                    class="form-control" 
@@ -44,10 +44,10 @@
                          </span>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">
-                            <span class="text-danger">*</span>再次输入密码：
+                        <label class="col-md-3 control-label">
+                            <span class="text-danger">*</span>确认密码：
                         </label>
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <input type="password" 
                                    name="password2" 
                                    class="form-control" 
@@ -71,6 +71,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <a class="btn btn-success btn-lg" ng-click="register()">注册</a>
+                            <a ui-sref="index" class="btn btn-default btn-lg">登陆</a>
                         </div>
                     </div>
                 </form>

@@ -131,7 +131,7 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
 * Description
 */
 var loginModule = angular.module('LoginMoudle', []);
-loginModule.controller('loginController', function($scope, $http,$location){
+loginModule.controller('loginController', function($scope, $http,$location,$state){
     $scope.userInfo = {
         "email":"",
         "password":""
@@ -145,8 +145,16 @@ loginModule.controller('loginController', function($scope, $http,$location){
                 .success(function(response){
                     for (var i = 0; i < response.length; i++) {
                         if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
-                            $location.path("/booklist");
+                            //$location.path("/booklist");
+                            $state.go("booklist",{bookType:0});
+                            //$state.go("booklist({'bookType':0})");
+                            /*
+                             Could not resolve 'booklist({bookType:0})' from state 'index'
+                             */
+                            console.log("$location-"+$location)
                             console.log($location)
+                            console.log("$state-"+$state)
+                            console.log($state)
                             return ;
                         }
                     }
