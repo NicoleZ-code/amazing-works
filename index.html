@@ -18,10 +18,10 @@
 		<li ng-repeat='item in data'>
 			<a href="{{item.url}}">
 				<p>
-					<img ng-src="{{item.imgUrl}}" alt="{{item.imgUrl}}" ng-cloak>
+					<img ng-src="{{item.imgUrl}}" alt="{{item.imgUrl}}" ng-cloak class="ng-cloak">
 				</p>
-				<h3 ng-cloak>{{item.name}}</h3>
-				<span ng-repeat="t_item in item.type" ng-cloak>{{t_item}}<span ng-if="!$last">,</span> </span>
+				<h3 ng-cloak class="ng-cloak">{{item.name}}</h3>
+				<span ng-repeat="t_item in item.type" ng-cloak class="ng-cloak">{{t_item}}<span ng-if="!$last">,</span> </span>
 			</a>	
 		</li>
 	</ul>
