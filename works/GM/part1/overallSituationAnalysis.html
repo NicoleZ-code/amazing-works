@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>整体情况分析</title>
+</head>
+<body>
+	<div class="overall-container">
+		<div class="overall-left">
+			<div class="overall-title">整体情况分析
+				<input class="select-time Wdate" type="text" placeholder="请选择日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true,ychanged:searchDateTime,Mchanged:searchDateTime,dchanged:searchDateTime})">
+			</div>
+			
+			<div id="gymap" style="width:550px;height: 600px;"></div>
+			<!-- canvas -->
+		</div>
+		<div class="overall-right">
+			<div class="overall-right-top o-item">
+				<div class="overall-title" id="gyDauge-title">贵阳市</div>
+				<div id="gyGauge" style="width:100%; height: 350px;"></div>
+				<div></div>
+			</div>
+			<div class="overall-right-bottom o-item">
+				<div class="overall-title" id="gyDauge-title">信用指标指数 - <span id="gyBar-title"></span></div>
+				<div id="gyBar" style="width:100%; height: 180px;"></div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="overall-line">
+			<div class="overall-title">年度各项指标</div>
+			<div id="gyLine" style="width: 100%;height: 300px;"></div>
+		</div>
+		<div class="overall-list">
+			<div class="overall-title">
+				税收信用TOP排名
+				<div class="tax-list-select">
+					<ul>
+						<li>
+							<input class="select-time Wdate" type="text" placeholder="请选择日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true,ychanged:createTopListParams,Mchanged:createTopListParams,dchanged:createTopListParams})">
+						</li>
+						<li>
+							<label for="">地区</label>
+							<dl>
+					          <dd value="一分局">一分局</dd>
+					          <dd value="二分局">二分局</dd>
+					        </dl>
+						</li>
+						<li>
+							<label for="">综合指标</label>
+							<dl>
+								<dd value="企业综合指数">企业综合指数</dd>
+							</dl>
+						</li>
+						<li>
+							<label for="">一级指标</label>
+							<dl>
+					          <dd value="企业发展指数">企业发展指数</dd>
+					          <dd value="纳税信用指数">纳税信用指数</dd>
+					          <dd value="税收风险指数">税收风险指数</dd>
+							</dl>
+						</li>
+						<li>
+							<label for="">二级指标</label>
+							<dl>
+					          <dd value="交易活跃指数">交易活跃指数</dd>
+					          <dd value="发展潜力指数">发展潜力指数</dd>
+					          <dd value="税收发展指数">税收发展指数</dd>
+					        </dl>
+						</li>
+						<li>
+							<label for="">三级指标</label>
+							<dl>
+					          	<dd value="月开票次数">月开票次数</dd>
+					          	<dd value="月收票次数">月收票次数</dd>
+					          	<dd value="月开票单张金额均值">月开票单张金额均值</dd>
+					          	<dd value="月收票单张金额均值">月收票单张金额均值</dd>
+					          	<dd value="月户均开票数">月户均开票数</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="bar-list">
+				<div id="gyBarList01" class="bar-list-item" ></div>
+				<div id="gyBarList02" class="bar-list-item" ></div>
+				<div id="gyBarList03" class="bar-list-item" ></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+	var mapObject , gaugeObject, barObject, lineObject,
+		barList01Object,barList02Object,barList03Object;
+
+	$(function(){
+		init();//初始化
+		// 点击-选择时间
+		$(".selectbox option").on("click",function(){
+			createGauge("贵阳市"); //雷达图
+			createBar("贵阳市");   //柱状图
+		});
+
+		//点击税收信用Top排名
+		$(".tax-list-select ul li  dl dd").on("click",function(){
+			createTopListParams();
+		});
+	});
+
+	function randomData(num) {
+	    return Math.round(Math.random()*num);
+	}
+
+
+	function init() {
+		//贵阳市地图
+		mapObject= echarts.init(document.getElementById('gymap'));
+		mapObject.showLoading();
+		createMap();
+		MapEvent(); //贵阳市地图 区域点击
+
+		//雷达图
+		gaugeObject = echarts.init(document.getElementById('gyGauge'));
+		createGauge("贵阳市");
+
+		//柱状图
+		barObject = echarts.init(document.getElementById('gyBar'));
+		createBar("贵阳市");
+
+		//折线图
+		lineObject = echarts.init(document.getElementById('gyLine'));
+		createLine();
+
+		//创建税收信用Top排名
+		createTopListParams();
+	}
+
+	//选择时间  
+	function searchDateTime(){
+		createMap();
+		createGauge("贵阳市");
+		createBar("贵阳市");
+	}
+	//创建贵阳市地图
+	function createMap() {
+			$.getJSON('lib/echart/guiyang.json', function (json) {
+			    echarts.registerMap('guiyang', json);
+				mapObject.hideLoading();
+			    mapObject.setOption({
+				    tooltip: {
+				        trigger: 'item',
+				        formatter: function (params) {
+				            return params.name + ' : ' + params.value;
+				        }
+				    },
+				    visualMap: {
+				        min: 0,
+				        max: 100,
+				        left: 'left',
+				        top: 'bottom',
+				        text: ['高','低'],           // 文本，默认为数值文本
+				        calculable: true,
+				        padding: [10, 10]
+				    },
+			        series: [{
+			            type: 'map',
+			            map: 'guiyang',
+			            label: {
+			                normal: {
+			                    show: true
+			                },
+			                emphasis: {
+			                    show: true
+			                }
+			            },
+			            data:[
+			            	{
+			            		name:"南明区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"云岩区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"乌当区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"花溪区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"观山湖区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"白云区",
+			            		value:randomData(100)
+			            	},{
+			            		name:"开阳县",
+			            		value:randomData(100)
+			            	},{
+			            		name:"修文县",
+			            		value:randomData(100)
+			            	},{
+			            		name:"息烽县",
+			            		value:randomData(100)
+			            	},{
+			            		name:"清镇市",
+			            		value:randomData(100)
+			            	}
+			            ]
+
+			        }]
+			    });	   
+			});
+		
+	}
+
+	// 地图点击事件
+	function MapEvent(){
+		mapObject.on('click',function(params){
+			createGauge(params.name);
+			createBar(params.name)
+		});
+		mapObject.on('dblclick',function(params){
+			$("#maincontent").load("part1/overallDatail.html");
+			mapObject.showLoading();
+		});
+	}
+
+	//生成仪表图
+	function createGauge(name){
+		var option = {
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+  	        series : [
+		        {
+		            name: '速度',
+		            type: 'gauge',
+		            z: 3,
+		            min: 0,
+		            max: 100,
+		            splitNumber: 10,
+		            radius: '50%',
+		            center: ['25%', '30%'],
+		            pointer:{
+		            	width:3
+		            },
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    width: 5
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length: 10,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length: 10,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            title : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontSize: 10,
+		                    fontStyle: 'italic'
+		                }
+		            },
+		            detail : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'normal'
+		                }
+		            },
+		            data:[{value: randomData(49)+50, name: '企业综合指数'}]
+		       	 },{
+		            name: '速度',
+		            type: 'gauge',
+		            z: 3,
+		            min: 0,
+		            max: 100,
+		            splitNumber: 10,
+		            radius: '50%',
+		            center: ['73%', '30%'],
+		            pointer:{
+		            	width:3
+		            },
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    width: 3
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length: 10,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto',
+		                    fontSize: 8
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length: 10,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            title : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontSize: 10,
+		                    fontStyle: 'italic'
+		                }
+		            },
+		            detail : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'normal'
+		                }
+		            },
+		            data:[{value: randomData(49)+50, name: '企业发展指数'}]
+		        },{
+		            name: '速度',
+		            type: 'gauge',
+		            z: 3,
+		            min: 0,
+		            max: 100,
+		            splitNumber: 10,
+		            center: ['25%', '80%'],
+		            radius: '50%',
+		            pointer:{
+		            	width:3
+		            },
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    width: 5
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length: 10,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length: 10,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            title : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontSize: 10,
+		                    fontStyle: 'italic'
+		                }
+		            },
+		            detail : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'normal'
+		                }
+		            },
+		            data:[{value: randomData(49)+50, name: '纳税信用指数'}]
+		        },{
+		            name: '速度',
+		            type: 'gauge',
+		            z: 3,
+		            min: 0,
+		            max: 100,
+		            splitNumber: 10,
+		            radius: '50%',
+		            center: ['73%', '80%'],
+		            pointer:{
+		            	width:3
+		            },
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    width: 5
+		                }
+		            },
+		            axisTick: {            // 坐标轴小标记
+		                length: 10,        // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            splitLine: {           // 分隔线
+		                length: 10,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            title : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'bolder',
+		                    fontSize: 10,
+		                    fontStyle: 'italic'
+		                }
+		            },
+		            detail : {
+		                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+		                    fontWeight: 'normal'
+		                }
+		            },
+		            data:[{value: randomData(49)+50, name: '税收风险指数'}]
+		        }
+		    ]
+		};
+		gaugeObject.setOption(option);
+		$("#gyDauge-title").text(name);
+
+	}
+
+	//生成柱状图
+	function createBar(name){
+		var option = {
+		    tooltip : {
+		        trigger: 'axis',
+		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		        }
+		    },
+		    grid: {
+		    	top:'15%',
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    color:["green"],
+		    xAxis : [
+		        {
+		            type : 'category',
+		            data : ['建筑业', '服务业', '金融业', '农业', '旅游业','房产业', '制造业'],
+		            axisTick: {
+		                alignWithLabel: true
+		            },
+		            splitLine: {
+			            lineStyle: {
+			                type: 'dashed'
+			            }
+			        }
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            max:100
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'指标',
+		            type:'bar',
+		            barWidth: '40%',
+		            data:[randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100)],
+		            markPoint: {
+		                data: [
+		                    {type: 'max', name: '最大值'},
+		                    {type: 'min', name: '最小值'}
+		                ],
+		                symbolSize:30
+		            }
+		        }
+		    ]
+		};
+		barObject.setOption(option);
+		$("#gyBar-title").text(name);
+	}
+
+	// 生成折线图
+	function createLine(){
+		var option = {
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    legend: {
+		        data:['企业综合指数','企业发展指数','纳税信用指数','税收风险指数']
+		    },
+		    xAxis:  {
+		        type: 'category',
+		        boundaryGap: false,
+		        data: ['1月','2月' ,'3月','4月' ,'5月','6月' ,'7月','8月' ,'9月','10月' ,'11月','12月' ]
+		    },
+		    yAxis: {
+		        type: 'value',
+		        axisLabel: {
+		            formatter: '{value} '
+		        },
+		        max:100,
+		        min:0,
+		        splitLine: {
+		            lineStyle: {
+		                type: 'dashed'
+		            }
+		        }
+	    	},
+		    series: [
+		        {
+		            name:'企业综合指数',
+		            type:'line',
+		            data:[randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100)],
+		            markPoint: {
+		                data: [
+		                    {type: 'max', name: '最大值'},
+		                    {type: 'min', name: '最小值'}
+		                ]
+		            },
+		            markLine: {
+		                data: [
+		                    {type: 'average', name: '平均值'}
+		                ]
+		            }
+		        },
+		        {
+		            name:'企业发展指数',
+		            type:'line',
+		            data:[randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100)],
+		            markPoint: {
+		                data: [
+		                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+		                ]
+		            },
+		            markLine: {
+		                data: [
+		                    {type: 'average', name: '平均值'},
+		                    [{
+		                        symbol: 'none',
+		                        x: '90%',
+		                        yAxis: 'max'
+		                    }, {
+		                        symbol: 'circle',
+		                        label: {
+		                            normal: {
+		                                position: 'start',
+		                                formatter: '最大值'
+		                            }
+		                        },
+		                        type: 'max',
+		                        name: '最高点'
+		                    }]
+		                ]
+		            }
+		        },{
+		            name:'纳税信用指数',
+		            type:'line',
+		            data:[randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100)]//,
+		            // markPoint: {
+		            //     data: [
+		            //         {type: 'max', name: '最大值'},
+		            //         {type: 'min', name: '最小值'}
+		            //     ]
+		            // },
+		            // markLine: {
+		            //     data: [
+		            //         {type: 'average', name: '平均值'}
+		            //     ]
+		            // }
+		        },
+		        {
+		            name:'税收风险指数',
+		            type:'line',
+		            data:[randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100),randomData(100)]
+		        }
+		    ]
+		};
+		lineObject.setOption(option); 
+	}
+
+	//创建税收信用Top排名
+	function createTopListParams(){
+		barList01Object = echarts.init(document.getElementById('gyBarList01'));
+		barList02Object = echarts.init(document.getElementById('gyBarList02'));
+		barList03Object = echarts.init(document.getElementById('gyBarList03'));
+
+
+		createTopList({
+			target:barList01Object,
+			ylabel:["南明区","云岩区","乌当区","花溪区","观山湖区","白云区","开阳县","修文县","息烽县","清镇市"],
+			title:"各地区信用指数排名",
+			data:[randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50,randomData(50)+50]
+		});
+		createTopList({
+			target:barList02Object,
+			ylabel:['建筑业', '服务业', '金融业', '农业', '旅游业','房产业', '制造业'],
+			title:"各行业信用指数排名",
+			data:[randomData(60)+40,randomData(60)+40,randomData(60)+40,randomData(60)+40,randomData(60)+40,randomData(60)+40,randomData(60)+40]
+		});
+		createTopList({
+			target:barList03Object,
+			ylabel:["企业A","企业B","企业C","企业D","企业E","企业F","企业G","企业H","企业I","企业J"],
+			title:"企业税收信用排名Top10",
+			data:[
+					randomData(5)+5,
+					randomData(10)+10,
+					randomData(10)+20,
+					randomData(10)+30,
+					randomData(10)+40,
+					randomData(10)+50,
+					randomData(10)+60,
+					randomData(10)+70,
+					randomData(10)+80,
+					randomData(10)+90
+				]
+		});
+	}
+
+	//税收信用Top排名
+	function createTopList(params){
+		var option = {
+				title:{
+					text:params.title,
+					textStyle:{
+						fontSize:14,
+						color:"#555"
+					},
+					padding:[10,30]
+				},
+				color:["#61a0a8"],
+			    tooltip : {
+			        trigger: 'axis',
+			        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+			            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+			        }
+			    },
+			    grid: {
+			    	top:"50",
+			        left: '3%',
+			        right: '4%',
+			        bottom: '3%',
+			        containLabel: true
+			    },
+			    xAxis : [
+			        {
+			            type : 'value'
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'category',
+			            axisTick : {show: false},
+			            data : params.ylabel
+
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'利润',
+			            type:'bar',
+			            barWidth: '60%',
+			            label: {
+			                normal: {
+			                    show: true,
+			                    position: 'inside'
+			                }
+			            },
+			            data:params.data
+			        }
+			    ]
+			};
+		params.target.setOption(option,true);	
+	}
+	</script>
+</body>
+</html>
