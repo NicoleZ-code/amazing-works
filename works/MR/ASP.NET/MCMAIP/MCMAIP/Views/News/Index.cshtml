@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MCMAIP.Models.News>
+@{
+    ViewBag.Title = "index";
+}
+
+<div><img src="@Url.Content("~/Content/images/top.jpg")" alt=""></div>
+<div id="newsList" class="newsList">
+    <ul>
+        @foreach (var news in Model)
+        {
+            <li>
+                <h1><a href="@Url.Action("Detail", "News", new { id = news.Id })">@news.Title</a></h1>
+                <div class="news_item">
+                    <div class="pull-left thumb"><img alt="@news.Title" src="@news.ImgUrl"></div>
+                    <div class="desc colorgray">@news.Decs</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="ckepop jiathis_style" sharetitle="@news.Title">
+                    <a class="jiathis_button_tsina"></a>
+                    <a class="jiathis_button_tqq"></a>
+                    <a class="jiathis_button_weixin"></a>
+                    <a class="jiathis_button_renren"></a>
+                    <a class="jiathis_button_msn"></a>
+                </div>
+            </li>
+        }
+    </ul>
+
+    <div class="paginator">
+        <a class="previous" href="/Home/News?pageIndex=2" style="display:block;">&nbsp;</a>
+        <a class="next" href="/Home/News?pageIndex=0" style="display:none;">&nbsp;</a>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+    $(function () {
+        // 分页
+        $(".paginator a").click(function () {
+            var that = $(this);
+            if (that.attr("display") != "none") {
+                location.href = "?pageIndex=" + that.attr("pageIndex");
+            }
+        });
+        share();
+    });
+
+    //分享
+    function share() {
+        $(".newsList").on("click", ".ckepop a", function () {
+            var shareTitle = $(this).parent().attr("shareTitle");
+            var redirectUrl = "http://www.jiathis.com/send/?" + $(this).attr("urlParam") + "&title=" + shareTitle;
+            window.open(redirectUrl);
+        });
+    }
+
+
+</script>

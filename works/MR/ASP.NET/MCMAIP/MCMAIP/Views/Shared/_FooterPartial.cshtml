@@ -1,0 +1,62 @@
+﻿
+<div id="footer">
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul>
+					<li class="first">动  态</li>
+					<li>@Html.ActionLink("动态", "Index", "News")</li>
+                    <li>@Html.ActionLink("搜索", "Search", "News")</li> 
+				</ul>
+			</div>
+			<div class="span2">
+				<ul>
+					<li class="first">导师</li>
+					<li>@Html.ActionLink("微软技术专家", "Index", "Mentor")</li>
+				</ul>
+			</div>
+			<div class="span2">
+				<ul>
+					<li class="first">项目介绍</li>
+					<li>@Html.ActionLink("南京微软孵化平台", "Index", "Recruitment")</li>
+					<li>@Html.ActionLink("创业团队招募", "Content", "Recruitment")</li>
+					<li>@Html.ActionLink("常见问题解答", "FAQ", "Recruitment")</li>
+				</ul>
+			</div>
+			<div class="span2">
+				<ul>
+					<li class="first">关于我们</li>
+					<li>@Html.ActionLink("平台简介", "Index", "AboutUs")</li>
+					<li>@Html.ActionLink("运营公司", "Company", "AboutUs")</li>
+					<li>@Html.ActionLink("管理团队", "Team", "AboutUs")</li>
+					<li>@Html.ActionLink("联系我们", "Contactus", "AboutUs")</li>
+				</ul>
+			</div>
+			<div class="span4">
+				<h3 style="font-size:12px;margin-bottom: 5px;line-height:20px;text-align:center;
+					margin-top: 25px;color:#888;">
+					微软(中国)授权运营管理单位
+				</h3>
+				<span style="margin:0 auto;display:block;width:80px;"><img src="@Url.Content("~/Content/images/company_logo.png")" style="width:80px;"></span>
+				<h3 style="font-size:12px;color:#888;margin-top:5px;text-align:center;line-height:16px;">
+					南京小鹿创萌科技孵化器<br>运营管理公司
+				</h3>
+			</div>
+		</div>
+		<div class="footer" role="contentinfo" style="margin-top:0;">
+			&copy; @DateTime.Now.Year crystal ZYH
+		</div>
+	</div>
+</div>
+<div class="fiexd-tool">
+	<div class="erwm_ico"></div>
+	<a class="backTop" href="#header"></a>
+	<div class="erwm">
+		<img src="@Url.Content("~/Content/images/wx.jpg")" alt=""/>
+		<span class="text">关注微信公众号</span>
+	</div>
+</div>
+<!--  <div style="text-align:center">
+	   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1256720367'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1256720367%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+   </div> -->
+

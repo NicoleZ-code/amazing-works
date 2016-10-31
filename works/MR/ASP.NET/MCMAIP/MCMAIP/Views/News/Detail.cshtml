@@ -1,0 +1,20 @@
+﻿@model MCMAIP.Models.News
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div>
+    <img src="@Url.Content("~/Content/images/top.jpg")" alt="">
+</div>
+<div class="newsList" style="margin-bottom:20px;">
+    <h1>@Model.Title</h1>
+    <p class="tag">@Model.DateCreated </p>
+    <div class="desc">
+        <p>
+            <img alt="" src="@Model.ImgUrl" style="margin-right:auto;margin-left:auto;display:block;">
+        </p>
+        <p>
+            @Model.Decs
+        </p>
+    </div>
+</div>

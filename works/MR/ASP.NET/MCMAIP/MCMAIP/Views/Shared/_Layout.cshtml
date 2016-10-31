@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <title> 南京微软云暨移动应用孵化平台 - @ViewBag.Title </title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    <script src="/Scripts/lib/jquery-2.1.0.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <header>
+        @Html.Partial("_HeaderPartial")
+    </header>
+
+    <section id="main">
+        <div id="container">
+            <div class="container">
+                @RenderSection("featured", required: false)
+                @RenderBody()
+            </div>
+        </div>
+    </section> 
+    <footer>
+        @Html.Partial("_FooterPartial")
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+       
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿
+<nav style="clear:both;">
+    <div id="header" class="navbar">
+        <div class="container ">
+            <a class="logo" href="@Url.Content("~/Home")"> <img src="@Url.Content("~/Content/images/mva_logo.png")" alt="微软创投"> </a>
+            <div id="logindisplay" style="float:right;">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section> 
+            </div>
+            <div class="nav-collapse pull-right">
+                <ul id="menu-primary" class="nav">
+                    <li>@Html.ActionLink("动态", "Index", "News")</li>
+                    <li>@Html.ActionLink("导师", "Index", "Mentor")</li>
+                    <li>
+                        @Html.ActionLink("创业团队", "Index", "EnterPrise")
+                        <!--  <ul>
+                             <li><a href="enterPrise-1.html">一期团队</a></li>
+                             <li><a href="enterPrise-2.html">二期团队</a></li>
+                         </ul> -->
+                    </li>
+                    <li>@Html.ActionLink("合作伙伴", "Index", "Cooperate")</li>
+                    <li>
+                        @Html.ActionLink("申请入驻", "Index", "Recruitment")
+                        <ul>
+                            <li>@Html.ActionLink("南京微软孵化平台", "Index", "Recruitment")</li>
+                            <li>@Html.ActionLink("创业团队招募", "Content", "Recruitment")</li>
+                            <li>@Html.ActionLink("常见问题解答", "FAQ", "Recruitment")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("关于我们", "Index", "AboutUs")</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+

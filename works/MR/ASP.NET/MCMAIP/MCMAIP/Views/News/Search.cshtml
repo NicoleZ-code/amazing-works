@@ -1,0 +1,28 @@
+﻿@model List<MCMAIP.Models.News>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="account-container">
+    <hgroup class="title">
+        <h1>@ViewBag.Title.</h1>
+    </hgroup>
+    @Html.TextBox("Search") <!--搜索 自动填充 -->
+    <div id="newsList" class="newsList">
+        <ul>
+            @foreach (var news in Model)
+            {
+                <li>
+                    <h1><a href="@Url.Action("Detail", "News", new { id = news.Id })">@news.Title</a></h1>
+                    <div class="news_item">
+                        <div class="pull-left thumb"><img alt="@news.Title" src="@news.ImgUrl"></div>
+                        <div class="desc colorgray">@news.Decs</div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
