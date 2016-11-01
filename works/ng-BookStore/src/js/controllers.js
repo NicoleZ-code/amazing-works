@@ -1,4 +1,16 @@
 /**
+ * 这里是书籍目录模块
+ * @type {[type]}
+ */
+var bookCatalogueModule = angular.module("BookCatalogueModule", []);
+bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
+    $scope.toggle =function(){
+
+    };
+    //菜单配置
+});
+
+/**
  * 这里是书籍列表模块
  * @type {[type]}
  */
@@ -112,6 +124,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
         filterOptions: $scope.filterOptions
     };
 });
+
 
 
 /**

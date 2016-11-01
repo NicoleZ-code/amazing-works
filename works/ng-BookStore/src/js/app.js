@@ -2,6 +2,7 @@ var routerApp = angular.module('routerApp',
         [
             'ui.router', 
             'ngGrid', 
+            'BookCatalogueModule',
             'BookListModule',
             'BookDetailModule',
             'LoginMoudle',
