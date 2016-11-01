@@ -5,6 +5,7 @@ var routerApp = angular.module('routerApp',
             'BookCatalogueModule',
             'BookListModule',
             'BookDetailModule',
+            'BookAddlModule',
             'LoginMoudle',
             'RegisterMoudle'
          ]

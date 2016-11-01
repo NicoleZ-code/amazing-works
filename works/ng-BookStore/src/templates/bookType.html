@@ -5,11 +5,7 @@
                 <span ng-class="{'glyphicon glyphicon-chevron-up':collapse,'glyphicon glyphicon-chevron-down': !collapse}" style="float: right;"></span>
             </div>
             <div class="list-group" ng-if="collapse">
-                <a ui-sref="booklist({bookType:0})" ui-sref-active="active" class="list-group-item">全部</a>
-                <a ui-sref="booklist({bookType:1})" ui-sref-active="active" class="list-group-item">计算机</a>
-                <a ui-sref="booklist({bookType:2})" ui-sref-active="active" class="list-group-item">金融</a>
-                <a ui-sref="booklist({bookType:3})" ui-sref-active="active" class="list-group-item">哲学</a>
-                <a ui-sref="booklist({bookType:4})" ui-sref-active="active" class="list-group-item">高端办公</a>
+                <a class="list-group-item" ui-sref="booklist({bookType:item.bookTypeId})"  ui-sref-active="active" ng-repeat="item in bookCatalogue">{{item.bookName}}</a>
             </div>
         </div>
 

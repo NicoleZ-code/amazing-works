@@ -1,3 +1,4 @@
+"use strict";
 /**
  * 这里是书籍目录展示模块
  * @type {[type]}
@@ -5,6 +6,23 @@
 var bookCatalogueModule = angular.module("BookCatalogueModule", []);
 bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
     
+    $scope.bookCatalogue = [{
+        "bookTypeId":0,
+        "bookName":'全部'
+    },{
+        "bookTypeId":1,
+        "bookName":'计算机'
+    },{
+        "bookTypeId":2,
+        "bookName":'金融'
+    },{
+        "bookTypeId":3,
+        "bookName":'哲学'
+    },{
+        "bookTypeId":4,
+        "bookName":'高端办公'
+    }];
+
     $scope.collapse = true;
 
     //toggle手风琴功能
@@ -13,7 +31,30 @@ bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
     };
     //菜单配置
     
-});
+}); 
+
+//封装组件 bootstrap UI,AngularUI
+bookCatalogueModule.directive('', ['', function(){
+    // Runs during compile
+    return {
+        // name: '',
+        // priority: 1,
+        // terminal: true,
+        // scope: {}, // {} = isolate, true = child, false/undefined = no change
+        // controller: function($scope, $element, $attrs, $transclude) {},
+        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+        // template: '',
+        // templateUrl: '',
+        // replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+        link: function($scope, iElm, iAttrs, controller) {
+            
+        }
+    };
+}]);
+
 
 /**
  * 这里是书籍列表模块
@@ -147,7 +188,7 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
  * 这里是书籍add模块  弹出框形式 添加之后可以共用 页面会展示出来
  * @type {[type]}
  */
-var bookAddModule = angular.module("BookAddModule", []);
+var bookAddModule = angular.module("BookAddlModule", []);
 bookAddModule.controller('BookAddCtrl', function($scope){
     
     $scope.addBook = function(){
