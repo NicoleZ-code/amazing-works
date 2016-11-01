@@ -1,8 +1,10 @@
 <div class="row" ng-controller="BookCatalogueCtrl">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading" ng-click="toggle()">书籍类型 toggle手风琴功能</div>
-            <div class="list-group" ng-hide="collapse=='true'">
+            <div class="panel-heading" ng-click="toggle()">书籍类型 
+                <span ng-class="{'glyphicon glyphicon-chevron-up':collapse,'glyphicon glyphicon-chevron-down': !collapse}" style="float: right;"></span>
+            </div>
+            <div class="list-group" ng-if="collapse">
                 <a ui-sref="booklist({bookType:0})" ui-sref-active="active" class="list-group-item">全部</a>
                 <a ui-sref="booklist({bookType:1})" ui-sref-active="active" class="list-group-item">计算机</a>
                 <a ui-sref="booklist({bookType:2})" ui-sref-active="active" class="list-group-item">金融</a>

@@ -1,13 +1,18 @@
 /**
- * 这里是书籍目录模块
+ * 这里是书籍目录展示模块
  * @type {[type]}
  */
 var bookCatalogueModule = angular.module("BookCatalogueModule", []);
 bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
-    $scope.toggle =function(){
+    
+    $scope.collapse = true;
 
+    //toggle手风琴功能
+    $scope.toggle =function(){
+        $scope.collapse =  !$scope.collapse;
     };
     //菜单配置
+    
 });
 
 /**
@@ -136,6 +141,18 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
     console.log($stateParams);
     //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
     //不能直接传递过去???
+});
+
+/**
+ * 这里是书籍add模块  弹出框形式 添加之后可以共用 页面会展示出来
+ * @type {[type]}
+ */
+var bookAddModule = angular.module("BookAddModule", []);
+bookAddModule.controller('BookAddCtrl', function($scope){
+    
+    $scope.addBook = function(){
+
+    }
 });
 
 /**

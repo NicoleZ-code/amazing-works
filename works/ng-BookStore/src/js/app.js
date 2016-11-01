@@ -10,6 +10,7 @@ var routerApp = angular.module('routerApp',
          ]
     );
 /**
+ * 方便获得当前状态的方法，绑到根作用域。
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
  * @param  {[type]} $rootScope
@@ -30,7 +31,7 @@ routerApp.run(function($rootScope, $state, $stateParams) {
  * @param  {[type]} $urlRouterProvider
  * @return {[type]}
  */
-routerApp.config(function($stateProvider, $urlRouterProvider) {
+routerApp.config(function($stateProvider, $urlRouterProvider) { //$urlRouterProvider路由重定向
     $urlRouterProvider.otherwise('/index');
     $stateProvider
         .state('index', {
