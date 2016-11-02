@@ -6,8 +6,7 @@ var routerApp = angular.module('routerApp',
             'BookListModule',
             'BookDetailModule',
             'BookAddlModule',
-            'LoginMoudle',
-            'RegisterMoudle'
+            'UserManageMoudle'
          ]
     );
 /**

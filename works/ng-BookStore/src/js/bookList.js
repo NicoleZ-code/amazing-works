@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * 这里是书籍目录展示模块
  * @type {[type]}
@@ -184,102 +184,7 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
     //不能直接传递过去???
 });
 
-/**
- * 这里是书籍add模块  弹出框形式 添加之后可以共用 页面会展示出来
- * @type {[type]}
- */
-var bookAddModule = angular.module("BookAddlModule", []);
-bookAddModule.controller('BookAddCtrl', function($scope){
-    
-    $scope.addBook = function(){
-
-    }
-});
-
-/**
-*  验证登录loginModule
-*
-* Description
-*/
-var loginModule = angular.module('LoginMoudle', []);
-loginModule.controller('loginController', function($scope, $http,$location,$state){
-    $scope.userInfo = {
-        "email":"",
-        "password":""
-    };
-    $scope.submit = function(isValid){
-        if(isValid){
-            //$http 异步验证用户名密码是否正确
-            // 如何控制登录成功跳转 ui-sref="booklist({bookType:0})"
-            //$location.toXXXX = booklist({bookType:0});
-            $http.get("data/userInfo.json")
-                .success(function(response){
-                    for (var i = 0; i < response.length; i++) {
-                        if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
-                            //$location.path("/booklist");
-                            $state.go("booklist",{bookType:0});
-                            //$state.go("booklist({'bookType':0})");
-                            /*
-                             Could not resolve 'booklist({bookType:0})' from state 'index'
-                             */
-                            console.log("$location-"+$location)
-                            console.log($location)
-                            console.log("$state-"+$state)
-                            console.log($state)
-                            return ;
-                        }
-                    }
-                    
-                })
-                .error(function(){
-                    console.log("$http error")
-                });
-            
-        }
-    }
-    
-});
 
 
-/**
-*  验证注册registerModule
-*
-* Description
-*/
-var registerModule = angular.module('RegisterMoudle', []);
-registerModule.controller('registerController', function($scope, $http,$state){
-    $scope.userInfo = {
-        "email":"",
-        "password":"",
-        "password2":""
-    };
-    $scope.$watch("userInfo.password2",function(){
-        //console.log($scope.userInfo["password"],$scope.userInfo["password2"])
-        //underfined underfined
-        if($scope.userInfo["password"]!=$scope.userInfo["password2"]){
-            $scope.info = "两次密码不一致";
-        }
-    });
-    $scope.register = function(isValid){
-        if(isValid){
-            //$http 异步验证用户名密码是否存在
-            //nodejs 是否能操作写入文件
-            $http.get("data/userInfo.json")
-                .success(function(response){
-                    for (var i = 0; i < response.length; i++) {
-                        if($scope.userInfo.email == response[i].email && $scope.userInfo.password == response[i].password){
-                            $scope.info = "用户已存在";
-                        }else{
-                            console.log("注册成功！")
-                            //$state.go("index");
-                        }
-                    }
-                    
-                })
-                .error(function(){
-                    console.log("$http error")
-                });
-        }
-    }
-    
-});
+
+
