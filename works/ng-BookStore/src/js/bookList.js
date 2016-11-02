@@ -1,59 +1,5 @@
 'use strict';
-/**
- * 这里是书籍目录展示模块
- * @type {[type]}
- */
-var bookCatalogueModule = angular.module("BookCatalogueModule", []);
-bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
-    
-    $scope.bookCatalogue = [{
-        "bookTypeId":0,
-        "bookName":'全部'
-    },{
-        "bookTypeId":1,
-        "bookName":'计算机'
-    },{
-        "bookTypeId":2,
-        "bookName":'金融'
-    },{
-        "bookTypeId":3,
-        "bookName":'哲学'
-    },{
-        "bookTypeId":4,
-        "bookName":'高端办公'
-    }];
 
-    $scope.collapse = true;
-
-    //toggle手风琴功能
-    $scope.toggle =function(){
-        $scope.collapse =  !$scope.collapse;
-    };
-    //菜单配置
-    
-}); 
-
-//封装组件 bootstrap UI,AngularUI
-bookCatalogueModule.directive('', ['', function(){
-    // Runs during compile
-    return {
-        // name: '',
-        // priority: 1,
-        // terminal: true,
-        // scope: {}, // {} = isolate, true = child, false/undefined = no change
-        // controller: function($scope, $element, $attrs, $transclude) {},
-        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-        // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-        // template: '',
-        // templateUrl: '',
-        // replace: true,
-        // transclude: true,
-        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-        link: function($scope, iElm, iAttrs, controller) {
-            
-        }
-    };
-}]);
 
 
 /**
@@ -170,20 +116,6 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
         filterOptions: $scope.filterOptions
     };
 });
-
-
-
-/**
- * 这里是书籍详情模块
- * @type {[type]}
- */
-var bookDetailModule = angular.module("BookDetailModule", []);
-bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $stateParams) {
-    console.log($stateParams);
-    //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
-    //不能直接传递过去???
-});
-
 
 
 
