@@ -4,8 +4,6 @@ var routerApp = angular.module('routerApp',
             'ngGrid', 
             'BookTypeModule',
             'BookListModule',
-            'BookDetailModule',
-            'BookAddlModule',
             'UserManageMoudle'
          ]
     );
@@ -28,10 +26,10 @@ routerApp.run(function($rootScope, $state, $stateParams) {
  * 注意这里采用的是ui-router这个路由，而不是ng原生的路由。
  * ng原生的路由不能支持嵌套视图，所以这里必须使用ui-router。
  * @param  {[type]} $stateProvider
- * @param  {[type]} $urlRouterProvider
+ * @param  {[type]} $urlRouterProvider路由重定向
  * @return {[type]}
  */
-routerApp.config(function($stateProvider, $urlRouterProvider) { //$urlRouterProvider路由重定向
+routerApp.config(function($stateProvider, $urlRouterProvider) { 
     $urlRouterProvider.otherwise('/index');
     $stateProvider
         .state('index', {
@@ -65,7 +63,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) { //$urlRouterProv
         })
         .state('addbook', {
             url: '/addbook',
-            templateUrl: 'templates/addBookForm.html'
+            templateUrl: 'templates/bookAddForm.html'
         })
         .state('bookdetail', {
             url: '/bookdetail/:bookId', //注意这里在路由中传参数的方式

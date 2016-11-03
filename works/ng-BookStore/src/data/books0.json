@@ -1,6 +1,7 @@
 [{
     "bookId":"1",
     "index": "1",
+    "type": "AngularJS",
     "name": "用AngularJS开发下一代WEB应用",
     "author": "大漠穷秋",
     "pubTime": "20140101",
@@ -8,6 +9,7 @@
 }, {
     "bookId":"2",
     "index": "2",
+    "type": "Ext",
     "name": "Ext江湖",
     "author": "大漠穷秋",
     "pubTime": "20140809",
@@ -15,6 +17,7 @@
 }, {
     "bookId":"3",
     "index": "3",
+    "type": "游戏",
     "name": "ActionScript3.0游戏设计基础（第二版）",
     "author": "大漠穷秋",
     "pubTime": "20140601",
@@ -22,6 +25,7 @@
 }, {
     "bookId":"4",
     "index": "4",
+    "type": "AngularJS",
     "name": "Learning AngularJS Animations",
     "author": "Richard Keller",
     "pubTime": "2014101020",
@@ -29,6 +33,7 @@
 }, {
     "bookId":"5",
     "index": "5",
+    "type": "社会",
     "name": "自控力",
     "author": "（美）凯利·麦格尼格尔",
     "pubTime": "2014",

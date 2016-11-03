@@ -1,8 +1,9 @@
 [{
-    "bookId":"4",
-    "index": "4",
-    "name": "Learning AngularJS Animations",
-    "author": "Richard Keller",
-    "pubTime": "October 2014",
+    "bookId":"3",
+    "index": "3",
+    "type": "游戏",
+    "name": "ActionScript3.0游戏设计基础（第二版）",
+    "author": "大漠穷秋",
+    "pubTime": "20140601",
     "price":"35"
 }]

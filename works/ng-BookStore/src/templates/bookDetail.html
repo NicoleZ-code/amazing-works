@@ -16,13 +16,25 @@
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal" role="form" name="form">
+                        
+                         <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                书号：
+                            </label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">
+                                    {{bookItem.bookId}}
+                                </p>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">
                                 书名：
                             </label>
                             <div class="col-md-9">
                                 <p class="form-control-static">
-                                    <a href="http://item.jd.com/11342818.html" target="_blank">《用AngularJS开发下一代WEB应用》</a>
+                                    <a href="http://item.jd.com/11342818.html" target="_blank">
+                                    {{bookItem.name}}</a>
                                 </p>
                             </div>
                         </div>
@@ -31,7 +43,7 @@
                                 类型：
                             </label>
                             <div class="col-md-9">
-                                <p class="form-control-static">计算机</p>
+                                <p class="form-control-static">{{bookItem.type}}</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -39,7 +51,7 @@
                                 出版日期：
                             </label>
                             <div class="col-md-9">
-                                <p class="form-control-static">2013-02</p>
+                                <p class="form-control-static">{{bookItem.pubTime}}</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,7 +59,7 @@
                                 作者：
                             </label>
                             <div class="col-md-9">
-                                <p class="form-control-static">大漠穷秋</p>
+                                <p class="form-control-static">{{bookItem.author}}</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -55,17 +67,17 @@
                                 定价：
                             </label>
                             <div class="col-md-9">
-                                <p class="form-control-static">50元</p>
+                                <p class="form-control-static">{{bookItem.price}}</p>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label class="col-md-3 control-label">
                                 是否有电子书：
                             </label>
                             <div class="col-md-9">
                                 <p class="form-control-static">无</p>
                             </div>
-                        </div>
+                        </div>-->
                 </div>
             </div>
         </div>

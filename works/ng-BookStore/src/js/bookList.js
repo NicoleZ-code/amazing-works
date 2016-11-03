@@ -93,7 +93,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
             displayName: '出版日期',
             enableCellEdit: true,
             width: 120,
-            cellFilter: 'date'//出版日期格式化
+            cellFilter: "date: 'yyyy-MM-dd' " //日期存储有问题？？？
         }, {
             field: 'price',
             displayName: '定价',

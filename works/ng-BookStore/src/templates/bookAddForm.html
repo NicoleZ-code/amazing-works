@@ -19,11 +19,7 @@
                             类型：
                         </label>
                         <div class="col-md-10">
-                            <select class="form-control" ng-model="bookInfo.type">
-                                <option>计算机</option>
-                                <option>金融</option>
-                                <option>哲学</option>
-                                <option>高端办公</option>
+                            <select class="form-control" ng-model="bookInfo.type" ng-options=" type for type in typeList">
                             </select>
                         </div>
                     </div>
@@ -32,7 +28,7 @@
                             出版日期：
                         </label>
                         <div class="col-md-10">
-                            <input type="date" class="form-control" placeholder="日期格式YYYY-mm-dd">
+                            <input type="date" class="form-control" placeholder="日期格式YYYY-mm-dd" ng-model="bookInfo.pubTime  "><!-- | date: 'yyyy-MM-dd' -->
                         </div>
                     </div>
                     <div class="form-group">
@@ -40,22 +36,31 @@
                             作者：
                         </label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" placeholder="最多16个字符">
+                            <input type="text" class="form-control" placeholder="最多16个字符" ng-model="bookInfo.author">
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            价格：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="元" ng-model="bookInfo.price "> <!--| currency:'￥'-->
+                        </div>
+                    </div>
+                    
+                    <!--<div class="form-group">
                         <label class="col-md-2 control-label">
                             是否有电子书：
                         </label>
                         <div class="col-md-10">
                             <input type="checkbox">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <a ui-sref="booklist" class="btn btn-success" ng-disabled="form.$invalid">保存</a>
+                            <a class="btn btn-success" ng-disabled="form.$invalid" ng-click="addBook()">保存</a>
                             <a ui-sref="booklist({bookType:0})" class="btn btn-primary">取消</a>
-                            <button class="btn btn-default" ng-click="setFormData()">清空表单</button>
+                            <button class="btn btn-default" ng-click="clearData()">清空表单</button>
                         </div>
                     </div>
                 </form>
