@@ -1,7 +1,4 @@
 'use strict';
-
-
-
 /**
  * 这里是书籍列表模块
  * @type {[type]}
@@ -23,7 +20,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
         $scope.books = pagedData;
         $scope.totalServerItems = data.length;
         if (!$scope.$$phase) {
-            $scope.$apply();
+            $scope.$apply(); //??
         }
     };
 
@@ -36,7 +33,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
                 var ft = searchText.toLowerCase();
                 $http.get('data/books' + $stateParams.bookType + '.json')
                     .success(function(largeLoad) {
-                        data = largeLoad.filter(function(item) {
+                        data = largeLoad.filter(function(item) { //filter??
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                         $scope.setPagingData(data, page, pageSize);
@@ -54,12 +51,13 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
 
     $scope.$watch('pagingOptions', function(newVal, oldVal) {
         if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            $scope.getPagedDataAsync($scope.pagingOptions.pageSize,$scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
         }
     }, true);
+    //search book
     $scope.$watch('filterOptions', function(newVal, oldVal) {
         if (newVal !== oldVal) {
-            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            $scope.getPagedDataAsync($scope.pagingOptions.pageSize,$scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
         }
     }, true);
 
@@ -84,12 +82,12 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
             field: 'name',
             displayName: '书名',
             enableCellEdit: true,
-            width: 200
+            width: 300
         }, {
             field: 'author',
             displayName: '作者',
             enableCellEdit: true,
-            width: 100
+            width: 180
         }, {
             field: 'pubTime',
             displayName: '出版日期',
@@ -100,7 +98,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
             field: 'price',
             displayName: '定价',
             enableCellEdit: true,
-            width: 120,
+            width: 80,
             cellFilter: 'currency:"￥"'
         }, {
             field: 'bookId',
@@ -108,7 +106,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
             enableCellEdit: false,
             sortable: false,
             pinnable: false,
-            cellTemplate: '<div><a ui-sref="bookdetail({bookId:row.getProperty(col.field)})" id="{{row.getProperty(col.field)}}">详情</a></div>'
+            cellTemplate: '<div><a ui-sref="bookdetail({bookId:row.getProperty(col.field)})" id="{{row.getProperty(col.field)}}"  class="detailbtn">详情</a></div>'
         }],
         enablePaging: true,
         showFooter: true,

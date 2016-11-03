@@ -2,10 +2,10 @@
  * 这里是书籍目录展示模块
  * @type {[type]}
  */
-var bookCatalogueModule = angular.module("BookCatalogueModule", []);
-bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
+var bookTypeModule = angular.module("BookTypeModule", []);
+bookTypeModule.controller('BookTypeCtrl', function($scope){
     
-    $scope.bookCatalogue = [{
+    $scope.bookTypes = [{
         "bookTypeId":0,
         "bookName":'全部'
     },{
@@ -33,7 +33,7 @@ bookCatalogueModule.controller('BookCatalogueCtrl', function($scope){
 }); 
 
 //封装组件 bootstrap UI,AngularUI
-bookCatalogueModule.directive('', ['', function(){
+bookTypeModule.directive('', ['', function(){
     // Runs during compile
     return {
         // name: '',

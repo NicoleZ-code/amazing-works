@@ -1,11 +1,11 @@
-<div class="row" ng-controller="BookCatalogueCtrl">
+<div class="row" ng-controller="BookTypeCtrl">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading" ng-click="toggle()">书籍类型 
                 <span ng-class="{'glyphicon glyphicon-chevron-up':collapse,'glyphicon glyphicon-chevron-down': !collapse}" style="float: right;"></span>
             </div>
             <div class="list-group" ng-if="collapse">
-                <a class="list-group-item" ui-sref="booklist({bookType:item.bookTypeId})"  ui-sref-active="active" ng-repeat="item in bookCatalogue">{{item.bookName}}</a>
+                <a class="list-group-item" ui-sref="booklist({bookType:item.bookTypeId})"  ui-sref-active="active" ng-repeat="item in bookTypes">{{item.bookName}}</a>
             </div>
         </div>
 
