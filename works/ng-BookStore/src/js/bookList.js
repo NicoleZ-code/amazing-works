@@ -9,6 +9,12 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
         filterText: "",
         useExternalFilter: true
     };
+    //搜索 不只是当前显示的内容 包括更大的范围
+    //step 2 重置分页
+
+    $scope.searchAdvanced = function(){
+        var searchText = $scope.filterOptions.filterText ;
+    };
     $scope.totalServerItems = 0;
     $scope.pagingOptions = {
         pageSizes: [5, 10, 20],
