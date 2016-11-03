@@ -94,7 +94,8 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
             field: 'pubTime',
             displayName: '出版日期',
             enableCellEdit: true,
-            width: 120
+            width: 120,
+            cellFilter: 'date'//出版日期格式化
         }, {
             field: 'price',
             displayName: '定价',

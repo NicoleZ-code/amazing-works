@@ -8,7 +8,11 @@
 .container,.well{
 	margin-top: 20px;
 }
-.btn.btn-primary{
+.bookList{
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.bookList .form-control ,.bookList .btn{
 	margin-bottom: 5px;
 }
 .has-error{
