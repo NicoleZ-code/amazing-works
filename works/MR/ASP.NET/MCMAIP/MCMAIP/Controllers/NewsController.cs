@@ -1,31 +1,42 @@
-﻿using System;
+﻿using MCMAIP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MCMAIP.Models;
+//using System.Web.Http;
+//using System.Web.Http.Routing;
 
 namespace MCMAIP.Controllers
 {
     public class NewsController : Controller
     {
-        MCMAIPEntities storeDB = new MCMAIPEntities();
         //
-        // GET: /News/Index
+        // GET: /News/
+        MCMAIPEntities storeDB = new MCMAIPEntities();
 
         public ActionResult Index()
         {
-            // Get most popular news
-            var newsList = GetTopSellingNews(10);
-  
-            return View(newsList);
+            return View();
+        }
+
+
+        //[Route("a/video")]
+        public ActionResult GetNews(int count)
+        {
+            var news = GetTopSellingNews(count);
+
+            return Json(news, JsonRequestBehavior.AllowGet);
+
         }
 
         private List<News> GetTopSellingNews(int count)
         {
             // Group the order details by album and return
             // the albums with the highest count
-
+            SampleData sd = new SampleData();
+            //sd.InitializeDatabase(storeDB);
+            sd.SeedData(storeDB);
             return storeDB.NewsList
                 .OrderByDescending(a => a.Id)
                 .Take(count)
@@ -33,11 +44,13 @@ namespace MCMAIP.Controllers
         }
 
         //
-        // GET: /News/Details/5
+        // GET: /News/Detail/5
 
-        public ActionResult Details(int id)
+        public ActionResult Detail(int id)
         {
-            var news = new News{Id = id};
+            SampleData sd = new SampleData();
+            sd.SeedData(storeDB);
+            var news = storeDB.NewsList.Single(a => a.Id == id);
             return View(news);
         }
 

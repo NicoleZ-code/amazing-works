@@ -1,42 +1,40 @@
-﻿@model IEnumerable<MCMAIP.Models.News>
-@{
+﻿@{
     ViewBag.Title = "index";
 }
 
 <div><img src="@Url.Content("~/Content/images/top.jpg")" alt=""></div>
 <div id="newsList" class="newsList">
     <ul>
-        @foreach (var news in Model)
-        {
-            <li>
-                <h1><a href="@Url.Action("Detail", "News", new { id = news.Id })">@news.Title</a></h1>
-                <div class="news_item">
-                    <div class="pull-left thumb"><img alt="@news.Title" src="@news.ImgUrl"></div>
-                    <div class="desc colorgray">@news.Decs</div>
-                    <div class="clear"></div>
-                </div>
-                <div class="ckepop jiathis_style" sharetitle="@news.Title">
-                    <a class="jiathis_button_tsina"></a>
-                    <a class="jiathis_button_tqq"></a>
-                    <a class="jiathis_button_weixin"></a>
-                    <a class="jiathis_button_renren"></a>
-                    <a class="jiathis_button_msn"></a>
-                </div>
-            </li>
-        }
-    </ul>
 
+    </ul>
     <div class="paginator">
-        <a class="previous" href="/Home/News?pageIndex=2" style="display:block;">&nbsp;</a>
+        <a class="previous" href="/Home/News?pageIndex=2" style="display:none;">&nbsp;</a>
         <a class="next" href="/Home/News?pageIndex=0" style="display:none;">&nbsp;</a>
     </div>
 </div>
 
-
+<script type="text/javascript" src="@Url.Content("~/Scripts/lib/jquery-2.1.0.min.js")"></script>
 <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
 <script type="text/javascript">
 
     $(function () {
+
+
+        $.ajax({
+            url: "@Url.Content("~/News/GetNews?count=10")",
+            type: "get", // post
+            data: '',
+            dataType: "json",
+            success: function (result) {
+                initNewsList(result);
+                share();
+            },
+            error: function () {
+
+            }
+        });
+
+
         // 分页
         $(".paginator a").click(function () {
             var that = $(this);
@@ -44,7 +42,6 @@
                 location.href = "?pageIndex=" + that.attr("pageIndex");
             }
         });
-        share();
     });
 
     //分享
@@ -56,5 +53,32 @@
         });
     }
 
+    function initNewsList(data) {
+        var str = "", aUrl = "";
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]["Id"]) {
+                str += "<li>";
+                str += "<h1><a href=\"News/Detail/" + data[i]["Id"] + "\">" + data[i]["Title"] + "</a></h1>";
+                str += "<div class=\"news_item\">";
+                str += "<div class=\"pull-left thumb\"><img alt=\"\" src=\"" + data[i]["ImgUrl"] + "\"></div>";
+                str += "<div class=\"desc colorgray\">" + data[i]["Decs"] + "</div>";
+                str += "<div class=\"clear\"></div>";
+                str += "</div>";
+                //share code <!-- JiaThis Button BEGIN -->
 
+                str += '<div class=\"ckepop jiathis_style\" sharetitle="' + data[i]["Title"] + '">' +
+                            '<a class=\"jiathis_button_tsina\"></a>' +
+                            '<a class=\"jiathis_button_tqq\"></a>' +
+                            '<a class=\"jiathis_button_weixin\"></a>' +
+                            '<a class=\"jiathis_button_renren\"></a>' +
+                            '<a class=\"jiathis_button_msn\"></a>' +
+                        '</div>';
+
+
+                str += "</li>";
+            }
+
+        }
+        $("#newsList ul").html(str);
+    }
 </script>

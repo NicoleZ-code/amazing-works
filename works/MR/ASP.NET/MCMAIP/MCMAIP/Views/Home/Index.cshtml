@@ -56,6 +56,8 @@
     <div class="clear"></div>
 </div>
 
+<script type="text/javascript" src="@Url.Content("~/Scripts/lib/jquery-2.1.0.min.js")"></script>
+
     <!-- Add fancyBox -->
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/lib/fancybox/jquery.fancybox.css")" media="screen"/>
 <script type="text/javascript" src="@Url.Content("~/Scripts/lib/fancybox/jquery.fancybox.pack.js")"></script>
@@ -73,12 +75,12 @@
         }
 
         $.ajax({
-            url: "@Url.Content("~/News/Index?count=3")",
+            url: "@Url.Content("~/News/GetNews?count=3")",
             type: "get", // post
             data: '',
             dataType: "json",
             success: function (result) {
-                initNewsList(result.data);
+                initNewsList(result);
 
             },
             error: function () {
@@ -93,18 +95,18 @@
         for (var i = 0; i < data.length; i++) {
             switch (i) {
                 case 0:
-                    str = "<h3> <span class=\"primary-news-title\"><a href=\"" + data[i]["url"] + "\">" + data[i]["title"] + "</a></span> </h3>";
-                    str += "<p class=\"desc pull-right colorgray\">" + data[i]["desc"];
+                    str = "<h3> <span class=\"primary-news-title\"><a  href=\"News/Detail/" + data[i]["Id"] + "\">" + data[i]["Title"] + "</a></span> </h3>";
+                    str += "<p class=\"desc pull-right colorgray\">" + data[i]["Decs"];
                     str += "<br>";
-                    str += "<a class=\"readMore\" href=\"" + data[i]["url"] + "\">阅读更多</a>";
+                    str += "<a class=\"readMore\"  href=\"News/Detail/" + data[i]["Id"] + "\">阅读更多</a>";
                     str += "</p>";
-                    str += "<div class=\"thumb\"> <a href=\"" + data[i]["url"] + "\"> <img alt=\"" + data[i]["title"] + "\" src=\"" + data[i]["imgUrl"] + "\"> </a> </div>";
+                    str += "<div class=\"thumb\"> <a  href=\"News/Detail/" + data[i]["Id"] + "\"> <img alt=\"" + data[i]["Title"] + "\" src=\"" + data[i]["ImgUrl"] + "\"> </a> </div>";
                     $("#primaryNews").html(str);
                     break;
                 case 1:
                 case 2:
-                    str = "<li> <span class=\"pull-right news-publish-date colorgray\"> " + data[i]["date"] + "</span>";
-                    str += " <a href=\" " + data[i]["url"] + " \"> <span> " + i + "</span> " + data[i]["title"] + "</a>";
+                    str = "<li> <span class=\"pull-right news-publish-date colorgray\"> " + data[i]["DateCreated"] + "</span>";
+                    str += " <a  href=\"News/Detail/" + data[i]["Id"] + "\"> <span> " + i + "</span> " + data[i]["Title"] + "</a>";
                     str += "</li>";
                     $("#otherNewsList").append(str);
                     break;
