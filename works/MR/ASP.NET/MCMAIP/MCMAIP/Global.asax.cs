@@ -16,8 +16,6 @@ namespace MCMAIP
     {
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new MCMAIP.Models.SampleData());
-
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

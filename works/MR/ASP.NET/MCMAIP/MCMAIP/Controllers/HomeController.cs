@@ -20,12 +20,12 @@ namespace MCMAIP.Controllers
             return View();
         }
 
-        public ActionResult Indexs()
+        public ActionResult Indexs(int count)
         {
             // Get most popular news
-            var news = GetTopSellingNews(10);
+            var news = GetTopSellingNews(count);
 
-            return View(news);
+            return Json(news);
         }
 
         private List<News> GetTopSellingNews(int count)
